@@ -9,15 +9,25 @@ import { PhotosService } from '../photos.service';
   styleUrls: ['./photo-show.component.css']
 })
 export class PhotoShowComponent implements OnInit {
+  photoUrl: string;
 
   constructor(private phservice: PhotosService) {
-    this.phservice.getfoto().subscribe((res) => {
-      console.log(res.urls.regular);
-    })
+    this.fetchPoto();
+  }
 
+  fetchPoto() {
+    this.phservice.getfoto().subscribe((res) => {
+      this.photoUrl = res.urls.regular;
+    })
+  }
+
+  onClick() {
+    this.fetchPoto();
   }
 
   ngOnInit(): void {
   }
+
+  
 
 }
